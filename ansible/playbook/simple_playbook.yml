@@ -1,0 +1,17 @@
+---
+- name: "Simple playbook"
+  hosts: "{{ host }}"
+  become: true
+  vars_files:
+    - ./var.yml
+  tasks:
+    - name: PrintSomething
+      ansible.builtin.debug:
+        msg: "{{ messg }}"
+    - name: Intall python3
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - python3
+        - python3-pip
